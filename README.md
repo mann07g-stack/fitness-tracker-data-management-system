@@ -62,7 +62,11 @@ The application interacts heavily with a MySQL database.
         con.connect(host='localhost', user='root', passwd='YOUR_PASSWORD', database='fitness_tracker')
         ```
     *   Update `user` and `passwd` to match your MySQL credentials.
-    *   Ensure a database named `fitness_tracker` exists or allow the program to create tables as needed (the program contains `create table` logic).
+    *   Ensure a database named `fitness_tracker` exists. You can use the provided setup script:
+        ```bash
+        python setup_database.py
+        ```
+        This script will create the database and necessary tables for you.
 
 ## 🏃 Usage
 
