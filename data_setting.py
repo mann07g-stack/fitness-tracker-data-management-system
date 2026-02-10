@@ -8,12 +8,12 @@ def settings(username):
         print("\n▣▶▶◉3. Change your password.")
         print("\n▣▶▶◉4. Return back to main menu.")
         n=input("\n▶▶▶▶Choose the option from above(1-3):")
-        if n in '1':
+        if n == '1':
             print("\n\nLoading...Please Wait.............................\n")
             time.sleep(3)
             print("\nYour backup is completed")
             pp=input("Do you want to export all your data(Yes/No):")
-            if pp in 'Yesyes':
+            if pp.lower() in ['yes', 'y']:
                 print("\nHere's your complete data..")
                 mycon=con.connect(host='localhost',user='root',passwd='manngupta',database='fitness_tracker')
                 cur=mycon.cursor()
@@ -124,12 +124,12 @@ def settings(username):
                 a=input("\n\nPress enter to continue:")
             else:
                 print()
-        elif n in '2':
+        elif n == '2':
             print("\n\nAre you sure you want to delete your account...All your data will be completely cleared and you want be able to access it again.\n")
             time.sleep(2)
             r=input("\nPlease confirm (Yes/No):")
             while True:
-                if r in 'yesYes':
+                if r.lower() in ['yes', 'y']:
                     pas=input("\nEnter your password once again correctly:")
                     mycon=con.connect(host='localhost',user='root',passwd='manngupta',database='fitness_tracker')
                     cur=mycon.cursor()
@@ -186,12 +186,12 @@ def settings(username):
                     cur.close()
                     mycon.close()
                     break
-                elif r in 'Nono':
+                elif r.lower() in ['no', 'n']:
                     print("\nYou decided not to delete your data.")
                     break
                 else:
                     r=input("\n Please confirm correctly by typing (Yes/No):")
-        elif n in '3':
+        elif n == '3':
             print("\n\nIn order to change your password please provide with some information.")
             mycon=con.connect(host='localhost',user='root',passwd='manngupta',database='fitness_tracker')
             cur=mycon.cursor()
@@ -214,11 +214,9 @@ def settings(username):
                     pas=input("\nPlease enter your correct current password:")
             cur.close()
             mycon.close()
-        elif n in '4':
+        elif n == '4':
             print("\n\t\t\t\t\t\tGetting back to main menu.")
             time.sleep(1.5)
-            break
-        elif h==1:
             break
         else:
             print("\n Please enter the choice from the following.")

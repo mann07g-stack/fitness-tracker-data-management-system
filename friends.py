@@ -37,7 +37,7 @@ def follow_following(username):
         mycon.commit()
         cur.close()
         mycon.close()
-        if n in '1':
+        if n == '1':
             mycon=con.connect(host='localhost',user='root',passwd='manngupta',database='fitness_tracker')
             cur=mycon.cursor()
             qry=f"select C_Followers,C_Following from friend_connection where username='{username}'"
@@ -83,12 +83,12 @@ def follow_following(username):
                         print(w[h],'\t',new_follower[h])
                     print('\n')
                     ask=input("\nDo you want to accept any of the requests(Yes/No):")
-                    if ask in 'yesYes':
+                    if ask.lower() in ['yes', 'y']:
                         while True:
                             print("\n\n)))---1. If you want to accept all the requests.")
                             print("\n)))---2. If you want to accept specific requests and delete the rest.")
                             u=input("\nEnter the number alongside with the task that you want to proceed with:")
-                            if u in '1':
+                            if u == '1':
                                 qry4=f"update friend_connection set C_Followers = concat(C_Followers, ',', Follower), C_Following=concat(C_Following,',',Follower),Follower='' WHERE Username = '{username}'"
                                 cur.execute(qry4)
                                 mycon.commit()
@@ -98,7 +98,7 @@ def follow_following(username):
                                     mycon.commit()
                                 print("\nAll the requests have been accepted by you")
                                 break
-                            elif u in '2':
+                            elif u == '2':
                                 time.sleep(0.3)
                                 print("\nFull_Name\tUsername")
                                 for h in range(len(w)):
@@ -147,12 +147,13 @@ def follow_following(username):
                         print(w[h],'\t',new_follower[h])
                     print('\n')
                     ask=input("\nDo you want to accept any of the requests(Yes/No):")
-                    if ask in 'yesYes':
+                    if ask.lower() in ['yes', 'y']:
                         while True:
                             print("\n\n)))---1. If you want to accept all the requests.")
                             print("\n)))---2. If you want to accept specific requests and delete the rest.")
                             u=input("\nEnter the number alongside with the task that you want to proceed with:")
-                            if u in '1':
+                            if u == '1':
+
                                 qry4=f"update friend_connection set C_Followers = concat(C_Followers, ',', Follower), C_Following=concat(C_Following,',',Follower),Follower='' WHERE Username = '{username}'"
                                 cur.execute(qry4)
                                 mycon.commit()
@@ -162,7 +163,7 @@ def follow_following(username):
                                     mycon.commit()
                                 print("\nAll the requests have been accepted by you")
                                 break
-                            elif u in '2':
+                            elif u == '2':
                                 time.sleep(0.3)
                                 print("\nFull_Name\tUsername")
                                 for h in range(len(w)):
@@ -190,7 +191,7 @@ def follow_following(username):
             cur.close()
             mycon.close()
     
-        elif n in '2':
+        elif n == '2':
             mycon=con.connect(host='localhost',user='root',passwd='manngupta',database='fitness_tracker')
             cur=mycon.cursor()
             qry13=f"select C_Followers from friend_connection where username='{username}'"
@@ -305,7 +306,7 @@ def follow_following(username):
                 print("\n\nIt seems like you don't have any mutual friends.\n")
             mycon.close()
             cur.close()
-        elif n in '3':
+        elif n == '3':
             name1=input("\nEnter either username of your friend or complete Fullname to search:").strip()
             mycon=con.connect(host='localhost',user='root',passwd='manngupta',database='fitness_tracker')
             cur=mycon.cursor()
@@ -330,7 +331,7 @@ def follow_following(username):
                 if name1==ab:
                     f=input("\nDo you want to send him/her friend request(Yes/No):")
                     ccc+=1
-                    if f in 'Yesyes':
+                    if f.lower() in ['yes', 'y']:
                         qry9=f"update friend_connection set Follower=concat(Follower,',{username}') where Username='{name1}'"
                         cur.execute(qry9)
                         mycon.commit()
@@ -348,7 +349,7 @@ def follow_following(username):
                 index=m.index(p)
                 name1=l[index]
                 f=input("\nDo you want to send him/her friend request(Yes/No):")
-                if f in 'Yesyes':
+                if f.lower() in ['yes', 'y']:
                     qry11=f"update friend_connection set Follower=concat(Follower,',{username}') where Username='{name1}'"
                     cur.execute(qry11)
                     mycon.commit()
@@ -366,7 +367,7 @@ def follow_following(username):
                 time.sleep(1)
             cur.close()
             mycon.close()
-        elif n in '4':
+        elif n == '4':
             print("Here is the list of your followers.")
             mycon=con.connect(host='localhost',user='root',passwd='manngupta',database='fitness_tracker')
             cur=mycon.cursor()
@@ -423,7 +424,7 @@ def follow_following(username):
                         print("\nYou might have chosen a wrong username or name of your friend..Please try again later")
             else:
                 print("\nIt seems like you don't have any friends.\n")
-        elif n in '5':
+        elif n == '5':
             print("\n\n\t\t\t\t\t\tGetting back to the main menu....")
             time.sleep(1.1)
             break

@@ -17,7 +17,7 @@ def goal_setting_achievement(username):
                 print("\n⟫⟫⟫⟫2. Want to update the goal that you set up.")
                 print("\n⟫⟫⟫⟫3. To return to the main menu.")
                 ch1=input("\nEnter your choice from the above:")
-                if ch1 in '1':
+                if ch1 == '1':
                     qry4=f"select * from {username}_goal"
                     cur.execute(qry4)
                     abc=cur.fetchall()
@@ -40,7 +40,7 @@ def goal_setting_achievement(username):
                         else:
                             pass
                     print('\n\n')
-                elif ch1 in '2':
+                elif ch1 == '2':
                     goal,C_weight,T_weight,Running,Weight_lift,Endurance=goals_progress(username)
                     qry5=f"delete from {username}_goal"
                     cur.execute(qry5)
@@ -49,16 +49,17 @@ def goal_setting_achievement(username):
                     cur.execute(qry6)
                     mycon.commit()
                     print("\nYour goal has been updated successfully.")
-                elif ch1 in '3':
+                elif ch1 == '3':
                     print("\nReturning to the main menu...Will see you again")
                     break
                 else:
                     print("\nPlease Enter a valid choice given as followed.\n")
+            break  # Break the for loop once table is found
                                 
     if ab==0:
         print("\nYou haven't started setting up your goals")
         b=input("Do you want to start set up with your first goal (Yes/No):")
-        if b in 'Yesyes':
+        if b.lower() in ['yes', 'y']:
             qry1=f"create table {username}_goal (Username varchar(30),Goal varchar(100),Current_weight int,Target_weight int, Run_distance int,Weight_lift int,Endurance varchar(50), foreign key(Username) references userid(Username))"
             cur.execute(qry1)
             mycon.commit()

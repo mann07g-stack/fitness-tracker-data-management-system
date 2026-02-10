@@ -3,7 +3,7 @@ import time
 def admin_ask():
     name=input("\n\nↇↇ≊Enter your full name:")
     password=input("\n\nↇↇ≊Enter your password to access your database:")
-    a='Mann Gupta mann gupta Mann gupta'
+    a=['Mann Gupta', 'mann gupta', 'Mann gupta']
     b='mann_007'
     if name in a and password == b:
         admin_operations()
@@ -24,7 +24,7 @@ def admin_operations():
         print("\n⊠⊰⊰⊰6.See all the events list that occured.")
         print("\n⊠⊰⊰⊰7.To exit the program.")
         n=input("\nEnter the number(1-7) of which task you want to perform:")
-        if n in '1':
+        if n == '1':
             mycon=con.connect(host='localhost',user='root',passwd='manngupta',database='fitness_tracker')
             cur=mycon.cursor()
             qry="select username,FullName,Login_password,DOB,Mobile_no,Email from userid"
@@ -41,7 +41,7 @@ def admin_operations():
             time.sleep(3)
             cur.close()
             mycon.close()
-        elif n in '2':
+        elif n == '2':
             mycon=con.connect(host='localhost',user='root',passwd='manngupta',database='fitness_tracker')
             cur=mycon.cursor()
             qry="select username from userid"
@@ -131,7 +131,7 @@ def admin_operations():
             else:
                 print("\nYou must have entered a wrong username that doesn't exist")
                 time.sleep(0.2)
-        elif n in '3':
+        elif n == '3':
             print("\nHere's a complete list of people their followers and following")
             mycon=con.connect(host='localhost',user='root',passwd='manngupta',database='fitness_tracker')
             cur=mycon.cursor()
@@ -144,7 +144,7 @@ def admin_operations():
                     print(j,end="\t\t")
                 print()
             time.sleep(3)
-        elif n in '4':
+        elif n == '4':
             mycon=con.connect(host='localhost',user='root',passwd='manngupta',database='fitness_tracker')
             cur=mycon.cursor()
             qry="select username from userid"
@@ -200,7 +200,7 @@ def admin_operations():
             else:
                 print("\nYou might have chosen a wrong username that doesn't exist in our database.")
             time.sleep(2)
-        elif n in '5':
+        elif n == '5':
             print("\nLet's begin setting up a new event or schedule a new program for all the users who are our members.")
             name=input("\nEnter the complete name of the event that you are scheduling:")
             while True:
@@ -279,7 +279,7 @@ def admin_operations():
             time.sleep(3)
             cur.close()
             mycon.close()
-        elif n in '6':
+        elif n == '6':
             print("\nThe complete list of the programs as follows:")
             mycon=con.connect(host='localhost',user='root',passwd='manngupta',database='fitness_tracker')
             cur=mycon.cursor()
@@ -305,7 +305,7 @@ def admin_operations():
             time.sleep(3)
             cur.close()
             mycon.close()
-        elif n in '7':
+        elif n == '7':
             print("\nExiting from the program....")
             time.sleep(1)
             break

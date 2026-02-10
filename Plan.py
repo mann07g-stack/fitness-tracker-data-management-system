@@ -113,7 +113,7 @@ def workout_plan():
             print("\t•Jump Rope: 3 sets of 1 minute")
             print("\n•Subscription Price: $9.99/month")
             choice=input("\nDO You want to go with this Plan[Y--(Yes)/N--(No)]:")
-            if choice in 'YyYESyesYes':
+            if choice.lower() in ['yes', 'y']:
                 time_period=int(input("\nEnter the number of months for which you want to opt this plan:"))
                 while True:
                     if time_period>0:
@@ -143,7 +143,7 @@ def workout_plan():
             print("\t•Plank: 3 sets of 30 seconds")
             print("\n•Subscription Price: $12.99/month")
             choice=input("\nDO You want to go with this Plan[Y--(Yes)/N--(No)]:")
-            if choice in 'YyYESyesYes':
+            if choice.lower() in ['yes', 'y']:
                 time_period=int(input("\nEnter the number of months for which you want to opt this plan:"))
                 while True:
                     if time_period>0:
@@ -173,7 +173,7 @@ def workout_plan():
             print("\t•Seated Spinal Twist: 3 sets of 30 seconds (each side)")
             print("\n•Subscription Price: $7.99/month")
             choice=input("\nDO You want to go with this Plan[Y--(Yes)/N--(No)]:")
-            if choice in 'YyYESyesYes':
+            if choice.lower() in ['yes', 'y']:
                 time_period=int(input("\nEnter the number of months for which you want to opt this plan:"))
                 while True:
                     if time_period>0:
@@ -203,7 +203,7 @@ def workout_plan():
             print("\t•Superman Pose: 3 sets of 30 seconds")
             print("\n•Subscription Price: $10.99/month")
             choice=input("\nDO You want to go with this Plan[Y--(Yes)/N--(No)]:")
-            if choice in 'YyYESyesYes':
+            if choice.lower() in ['yes', 'y']:
                 time_period=int(input("\nEnter the number of months for which you want to opt this plan:"))
                 while True:
                     if time_period>0:
@@ -233,7 +233,7 @@ def workout_plan():
             print("\t•Dumbbell Lunges: 3 sets of 12 reps (each leg)")
             print("\n•Subscription Price: $14.99/month")
             choice=input("\nDO You want to go with this Plan[Y--(Yes)/N--(No)]:")
-            if choice in 'YyYESyesYes':
+            if choice.lower() in ['yes', 'y']:
                 time_period=int(input("\nEnter the number of months for which you want to opt this plan:"))
                 while True:
                     if time_period>0:

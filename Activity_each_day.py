@@ -3,8 +3,8 @@
 import time
 import mysql.connector as con
 def check_table_existence(username):
-    global y
-    global z
+    y = ""
+    z = username
     mycon=con.connect(host='localhost',user='root',passwd='manngupta',database='fitness_tracker')
     cur=mycon.cursor()
     qry='show tables'
@@ -16,7 +16,6 @@ def check_table_existence(username):
             break
         else:
             y=""
-    z=username
     cur.close()
     mycon.close()
     return(y,z)
@@ -27,7 +26,7 @@ def table_creation_new(z):
     print("\nIt seems like you don't have any daily data record.")
     time.sleep(0.3)
     a=input("Do You want to create a daily data record for yourself(Yes/No):")
-    if a in 'Yesyes':
+    if a.lower() in ['yes', 'y']:
         time.sleep(1)
         print("\n\n Start your daily tracking record by giving these data as follows:")
         time.sleep(0.4)
@@ -39,7 +38,7 @@ def table_creation_new(z):
         while True:
             input_values(z)
             ch=input("Do you want to add more data(Yes/No):")
-            if ch not in 'Yesyes':
+            if ch.lower() not in ['yes', 'y']:
                 break
             else:
                 continue
@@ -131,12 +130,12 @@ def Add_modify_old(username):
         print("------------>4. Want to remove the data permanently from our database.")
         print("------------>5. If you have completed the necessary operations or don't want to do any.")
         ch=input("\nEnter the number next to the task that you want to perform on your daily activity data:")
-        if ch in '1':
+        if ch == '1':
             input_values(username)
             print("\n\t\t\t\t\t       The values are added successfully in your record.")
-        elif ch in '2':
+        elif ch == '2':
             a=input("\nDo you want to see complete record with plan or not(Yes/No):")
-            if a in 'Yesyes':
+            if a.lower() in ['yes', 'y']:
                 mycon=con.connect(host='localhost',user='root',passwd='manngupta',database='fitness_tracker')
                 cur=mycon.cursor()
                 qry=f"select userid.Username, userid.FullName,{username}_plan_details.*,{username}_daily_activity.* from userid left join {username}_plan_details on userid.Username={username}_plan_details.Username left join {username}_daily_activity on userid.Username={username}_daily_activity.Username where userid.Username='{username}'"
@@ -178,12 +177,12 @@ def Add_modify_old(username):
                 mycon.close()
                 time.sleep(3)
                 print('\n\n')
-            elif a in 'Nono':
+            elif a.lower() in ['no', 'n']:
                 while True:
                     print("\n## 1. See your complete plan that you selected for yourself")
                     print("\n## 2. See the daily activity the fields will be chosen by you")
                     choice2=input("\nEnter the digit that you want to see:")
-                    if choice2 in '1':
+                    if choice2 == '1':
                         mycon=con.connect(host='localhost',user='root',passwd='manngupta',database='fitness_tracker')
                         cur=mycon.cursor()
                         qry1=f"select * from {username}_plan_details"
@@ -215,7 +214,7 @@ def Add_modify_old(username):
                         Plan.schedule()
                         print('\n\n')
                         
-                    elif choice2 in '2':
+                    elif choice2 == '2':
                         q=input("Enter the fields that you want to see of your daily activity(Date/Day/Time/Activity/Duration/Category/Level/Calories/Additional Information):")
                         tt=q.split()
                         na=""
@@ -271,7 +270,7 @@ def Add_modify_old(username):
                 mycon.close()
             else:
                 a=input("\nDo you want to see complete record with plan or not(Yes/No):")
-        elif ch in '3':
+        elif ch == '3':
             r=input("\nEnter your choice of data that you want to update[ONLY ONE](Date/Day/Time/Activity/Duration/Category/Level/Calories/Additional Information):")
             b=input("\nEnter the new value that you want to assign to it:")
             c=input("\nIf you want to apply condition type yes else enter:")
@@ -321,13 +320,13 @@ def Add_modify_old(username):
                 mycon.close()
                 cur.close()
                 print("\nThe update has been successfull...returning back")
-        elif ch in '4':
+        elif ch == '4':
             while True:
                 print("\n>>>1. If you want to erase the complete activity data that you were maintaining each day.")
                 print("\n>>>2. If you want to remove specific data in the record.")
                 print("\n>>>3. If you don't want to go further.")
                 choice4=input("\nEnter your choice that you want to perform:")
-                if choice4 in '1':
+                if choice4 == '1':
                     mycon=con.connect(host='localhost',user='root',passwd='manngupta',database='fitness_tracker')
                     cur=mycon.cursor()
                     qry5=f"delete from {username}_daily_activity"
@@ -337,12 +336,12 @@ def Add_modify_old(username):
                     cur.close()
                     time.sleep(1)
                     print("\n\nYour complete data of daily activities has been deleted.\n")
-                elif choice4 in '2':
+                elif choice4 == '2':
                     while True:
                         print("\n\n||1. If you want to delete a specific value from records.")
                         print("\n||2.If you want to delete the complete record for given condition.")
                         ch3=input("\nEnter the choice that you want to proceed with:")
-                        if ch3 in '1':
+                        if ch3 == '1':
                             p=input("\nSelect the criterion that you want to choose(Date/Day/Time/Activity/Duration/Category/Level/Calories/Additional Information):")
                             d=input("\nEnter its value that you want to remove(eg:Monday if Day is chosen):")
                             na = "date_done,day,time_of_day,activity,duration,category,level,calories,additional_thing"
@@ -367,7 +366,7 @@ def Add_modify_old(username):
                             cur.close()
                             print("\nYour data has been modified\n")
                             break
-                        elif ch3 in '2':
+                        elif ch3 == '2':
                             p=input("\nSelect the criterion that you want to choose for deletion(Date/Day/Time/Activity/Duration/Category/Level/Calories/Additional Information):")
                             d=input("\n Enter the value of the criterion chosen(eg:Monday if Day is chosen):")
                             na = "date_done,day,time_of_day,activity,duration,category,level,calories,additional_thing"
@@ -394,14 +393,14 @@ def Add_modify_old(username):
                             break
                         else:
                             print("\nPlease Enter a valid choice to proceed")
-                elif choice4 in '3':
+                elif choice4 == '3':
                     print("\nAlright getting back to the page...")
                     print("\n\t\t\t\t\t\t      Loading.......")
                     time.sleep(1.1)
                     break
                 else:
                     print("\n\nEnter a valid choice from the following:\n")
-        elif ch in '5':
+        elif ch == '5':
             time.sleep(0.3)
             print("\n\n\t\t\t\t\tAll the operations are done....Getting back to the main menu.")
             break

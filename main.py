@@ -29,7 +29,7 @@ def start():
         print("\n₪⫸⫸⫸3. ADMIN")
         print("\n₪⫸⫸⫸4. EXIT THE FITNESS TRACKER")
         m1=input("\nEnter the choice that you want to go with:")
-        if m1 in '1':
+        if m1 == '1':
             new=intro.new_user()
             friends.user_follow_following_new_user_insertion(new)
             plan_name,t_money_paid=Plan.workout_plan()
@@ -41,28 +41,28 @@ def start():
                 print("◉4. Go to Settings")
                 print("◉5. Exit the FITNESS TRACKER")
                 n=input("\nEnter any choice you want to:")
-                if n in '1':
+                if n == '1':
                     a,b=Activity_each_day.check_table_existence(new)
                     if a=="" and b!="":
                         d=Activity_each_day.table_creation_new(b)
-                        if d in 'NO':
+                        if d == 'NO':
                             print()
                         else:
                             Activity_each_day.Add_modify_old(new)
-                elif n in '2':
+                elif n == '2':
                     goal_setting.goal_setting_achievement(new)
-                elif n in '3':
+                elif n == '3':
                     friends.follow_following(new)
-                elif n in '4':
+                elif n == '4':
                     print("\nSince you are new you can't go to settings for the first time..Afterwhile you can go easily...")
                     print("\nThank you for cooperating")
                     time.sleep(0.4)
-                elif n in '5':
+                elif n == '5':
                     break
                 else:
                     print("\nPlease choice correctly.")
             break
-        elif m1 in '2':
+        elif m1 == '2':
             old=intro.old_user()
             if old!='Incorrect username':
                 while True:
@@ -74,25 +74,25 @@ def start():
                     print("⟭•••⁍⁍⁍⁍⁑6. Settings")
                     print("⟭•••⁍⁍⁍⁍⁑7. Get back to Login Page")
                     choices=input("\nSelect the number alongside to go to following pages given above:")
-                    if choices in '1':
+                    if choices == '1':
                         c,d=Activity_each_day.check_table_existence(old)
                         if c=="" and d!="":
                             z=Activity_each_day.table_creation_new(old)
-                            if z in 'NO':
+                            if z == 'NO':
                                 print()
                             else:
                                 Activity_each_day.Add_modify_old(old)
                         else:
                             Activity_each_day.Add_modify_old(old)
-                    elif choices in '2':
+                    elif choices == '2':
                         goal_setting.goal_setting_achievement(old)
-                    elif choices in '3':
+                    elif choices == '3':
                         while True:
                             print("\n\n1. View your plan details.")
                             print("\n2. Change your plan and cancel this existing plan.")
                             print("\n3. Return to the main menu.")
                             aaa=input("Enter the choice from (1-3):")
-                            if aaa in '1':
+                            if aaa == '1':
                                 mycon=con.connect(host='localhost',user='root',passwd='manngupta',database='fitness_tracker')
                                 cur=mycon.cursor()
                                 qry=f"select * from {old}_plan_details"
@@ -118,7 +118,7 @@ def start():
                                         pass
                                 cur.close()
                                 mycon.close()
-                            elif aaa in '2':
+                            elif aaa == '2':
                                 mycon=con.connect(host='localhost',user='root',passwd='manngupta',database='fitness_tracker')
                                 cur=mycon.cursor()
                                 qry1=f"drop table {old}_plan_details"
@@ -129,14 +129,14 @@ def start():
                                 plan_name,t_money_paid=Plan.workout_plan()
                                 New_Plan_Input.sub_table(old,plan_name,t_money_paid)
                                 print("\nNew plan has been set for you")
-                            elif aaa in '3':
+                            elif aaa == '3':
                                 print("\nReturning to main menu.....")
                                 break
                             else:
                                 print("\nPlease enter the correct value from (1-3)")
-                    elif choices in '4':
+                    elif choices == '4':
                         friends.follow_following(old)
-                    elif choices in '5':
+                    elif choices == '5':
                         time.sleep(1)
                         mycon=con.connect(host='localhost',user='root',passwd='manngupta',database='fitness_tracker')
                         cur=mycon.cursor()
@@ -165,18 +165,18 @@ def start():
                             continue
                         cur.close()
                         mycon.close()
-                    elif choices in '6':
+                    elif choices == '6':
                         data_setting.settings(old)
-                    elif choices in '7':
+                    elif choices == '7':
                         break
                     else:
                         print("\nPLease enter the choices from the following.")
             else:
                 break
-        elif m1 in '3':
+        elif m1 == '3':
             admin_control.admin_ask()
             break
-        elif m1 in '4':
+        elif m1 == '4':
             print()
             break
         else:

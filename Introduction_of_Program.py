@@ -148,7 +148,6 @@ def old_user():
             password=input("\nPlease enter the correct password:")
         k+=1
     if found==False:
-        time
         print("\n\t\t\t\t\t\tSorry! Please try again Later")
         return("Incorrect username")
     mycon.commit()
